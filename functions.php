@@ -54,7 +54,7 @@ if (! function_exists('\Roots\bootloader')) {
 |
 */
 
-collect(['setup', 'filters'])
+collect(['setup', 'filters', 'blocks'])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(
@@ -63,3 +63,27 @@ collect(['setup', 'filters'])
             );
         }
     });
+
+
+/**
+ * Block registration
+ */
+function sage_acf_block_render_callback($block, $content = '', $is_preview = false, $post_id = 0) {
+    // Get the block slug (name without "acf/")
+    $slug = str_replace('acf/', '', $block['name']);
+
+    // Define the Blade template path
+    $template = "blocks.{$slug}";
+
+    // Check if the template exists
+    if (view()->exists($template)) {
+        echo view($template, [
+            'block' => $block,
+            'content' => $content,
+            'is_preview' => $is_preview,
+            'post_id' => $post_id,
+        ]);
+    } else {
+        echo "Template not found: {$template}";
+    }
+}
