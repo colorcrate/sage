@@ -1,4 +1,5 @@
 @use '~sass-rem' as rem;
+@use 'sass:color';
 @use '../lib' as *;
 @use 'colors' as *;
 @use 'fonts' as *;
@@ -48,25 +49,29 @@
 
   // Styles
   @if $style == primary or $style == default {
-    background-color: color(black);
-    border: 1px solid color(black);
-    color: color(white);
-    transition: background-color 250ms ease, color 250ms ease;
-
-    @include attention {
-      background-color: lighten(color(black), 20%);
+    & { // See https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+      background-color: color(black);
+      border: 1px solid color(black);
       color: color(white);
+      transition: background-color 250ms ease, color 250ms ease;
+
+      @include attention {
+        background-color: color.scale(color(black), $lightness: 20%);
+        color: color(white);
+      }
     }
   }
   @else if $style == secondary {
-    background-color: color(white);
-    border: 1px solid color(black);
-    color: color(black);
-    transition: background-color 250ms ease;
-
-    @include attention {
-      background-color: darken(color(white), 20%);
+    & {
+      background-color: color(white);
+      border: 1px solid color(black);
       color: color(black);
+      transition: background-color 250ms ease;
+
+      @include attention {
+        background-color: color.scale(color(white), $lightness: -20%);
+        color: color(black);
+      }
     }
   }
 }

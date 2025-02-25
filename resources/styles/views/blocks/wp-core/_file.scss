@@ -10,8 +10,8 @@
 
     .wp-block-file__button {
       all: unset;
-      @include button;
       margin-left: 10px;
+      @include button;
     }
   }
 }

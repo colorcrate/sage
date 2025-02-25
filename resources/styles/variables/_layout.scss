@@ -175,6 +175,8 @@
   }
 
   // Apply the padding
-  padding-top: var(--top-padding);
-  padding-bottom: var(--bottom-padding);
+  & { // See https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+    padding-top: var(--top-padding);
+    padding-bottom: var(--bottom-padding);
+  }
 }

@@ -38,11 +38,3 @@ $colors: (
 
   @return $val;
 }
-
-
-// Background Colors
-@each $name, $color in $colors {
-  .cc-block--bkg-#{$name} {
-    background-color: color($name);
-  }
-}

@@ -1,4 +1,5 @@
 @use '~sass-rem' as rem;
+@use 'sass:color';
 @use '../lib' as *;
 @use 'colors' as *;
 @use 'fonts' as *;
@@ -153,7 +154,7 @@
   transition: color 250ms ease;
 
   @include attention {
-    color: darken(color(blue), 20%);
+    color: color.scale(color(blue), $lightness: -20%);
   }
 }
 
