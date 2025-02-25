@@ -1,0 +1,14 @@
+@use '~sass-rem' as rem;
+@use '../../../lib' as *;
+@use '../../../variables' as *;
+
+@include context('b') {
+
+  > .wp-block-embed {
+    margin: 0 auto rem.convert(20px) auto;
+
+    &.is-type-video {
+
+    }
+  }
+}

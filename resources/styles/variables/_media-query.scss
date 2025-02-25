@@ -1,0 +1,106 @@
+@use '~sass-rem' as rem;
+@use '../lib' as *;
+@use 'breakpoints' as *;
+
+//  PRINT MEDIA QUERIES
+//    Applies styles when a document is printed.
+//    Examples:
+//      @include media-print { color: red; }  // Applies styles to print only.
+@mixin media-print {
+  @media print { @content; }
+}
+
+//  SCREEN MEDIA QUERIES
+//    Used to define styles for specific breakpoints for screens.
+//    See _breakpoints.scss for the actual pixel values of these breakpoints.
+//    Examples:
+//      @include media-query(min, m) { color: red; }      // Apply styles to medium and larger
+//      @include media-query(max, m) { color: red; }      // Apply styles to medium and smaller
+//      @include media-query(only, m) { color: red; }     // Apply styles to only the medium breakpoint
+//      @include media-query(min, 256px) { color: red; }  // Apply styles to a specific pixel value and larger
+//      @include media-query(max, 256px) { color: red; }  // Apply styles to a specific pixel value and smaller
+@mixin media-query($type,$size) {
+  @if $type == min {
+    @if $size == xxs {
+      @media only screen and (min-width: rem.convert($break-start-xxs) ){ @content; }
+    }
+    @else if $size == xs {
+      @media only screen and (min-width: rem.convert($break-start-xs) ){ @content; }
+    }
+    @else if $size == s {
+      @media only screen and (min-width: rem.convert($break-start-s) ){ @content; }
+    }
+    @else if $size == m {
+      @media only screen and (min-width: rem.convert($break-start-m) ){ @content; }
+    }
+    @else if $size == l {
+      @media only screen and (min-width: rem.convert($break-start-l) ){ @content; }
+    }
+    @else if $size == xl {
+      @media only screen and (min-width: rem.convert($break-start-xl) ){ @content; }
+    }
+    @else if $size == xxl {
+      @media only screen and (min-width: rem.convert($break-start-xxl) ){ @content; }
+    }
+    @else { // If not one of these values, assume a px value
+      @media only screen and (min-width: rem.convert($size)) { @content }
+    }
+  }
+
+  @else if $type == max {
+    @if $size == xxs {
+      @media only screen and (max-width: rem.convert($break-end-xxs)) { @content; }
+    }
+    @else if $size == xs {
+      @media only screen and (max-width: rem.convert($break-end-xs)) { @content; }
+    }
+    @else if $size == s {
+      @media only screen and (max-width: rem.convert($break-end-s)) { @content; }
+    }
+    @else if $size == m {
+      @media only screen and (max-width: rem.convert($break-end-m)) { @content; }
+    }
+    @else if $size == l {
+      @media only screen and (max-width: rem.convert($break-end-l)) { @content; }
+    }
+    @else if $size == xl {
+      @media only screen and (max-width: rem.convert($break-end-xl)) { @content; }
+    }
+    @else if $size == xxl {
+      @media only screen and (max-width: rem.convert($break-end-xxl)) { @content; }
+    }
+    @else { // If not one of these values, assume a px value
+      @media only screen and (max-width: rem.convert($size)) { @content; }
+    }
+  }
+
+  @else if $type == only {
+    @if $size == xxs {
+      @media only screen and (max-width: rem.convert($break-end-xxs)) { @content; }
+    }
+    @else if $size == xs {
+      @media only screen and (min-width: rem.convert($break-start-xs)) and (max-width: rem.convert($break-end-xs)) { @content; }
+    }
+    @else if $size == s {
+      @media only screen and (min-width: rem.convert($break-start-s)) and (max-width: rem.convert($break-end-s)) { @content; }
+    }
+    @else if $size == m {
+      @media only screen and (min-width: rem.convert($break-start-m)) and (max-width: rem.convert($break-end-m)) { @content; }
+    }
+    @else if $size == l {
+      @media only screen and (min-width: rem.convert($break-start-l)) and (max-width: rem.convert($break-end-l)) { @content; }
+    }
+    @else if $size == xl {
+      @media only screen and (min-width: rem.convert($break-start-xl)) and (max-width: rem.convert($break-end-xl)) { @content; }
+    }
+    @else if $size == xl {
+      @media only screen and (min-width: rem.convert($break-start-xxl)) { @content; }
+    }
+  }
+}
+// Shorthand alias for media query
+@mixin mq($type,$size) {
+  @include media-query($type,$size) {
+    @content;
+  }
+}

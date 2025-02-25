@@ -1,0 +1,14 @@
+@use '~sass-rem' as rem;
+@use '../../../lib' as *;
+@use '../../../variables' as *;
+
+//  QUOTES
+//    Inherits styles from _base/typography.scss
+
+@include context('b') {
+
+  > blockquote {
+    max-width: 700px;
+    margin: 0 auto rem.convert(20px) auto;
+  }
+}

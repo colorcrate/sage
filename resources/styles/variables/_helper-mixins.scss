@@ -1,0 +1,93 @@
+//  HOVER / KEYBOARD FOCUS STYLES
+//    Example:
+//      .button {
+//        color: red;
+//        @include attention {
+//          color: blue;
+//        }
+//      }
+@mixin attention {
+  &:hover,
+  &:focus-visible {
+    @content;
+  }
+}
+
+//  KEYBOARD FOCUS
+//    Applies styles only to keyboard focus. Useful if you want hover styles
+//    to look one way and keyboard focus to look another.
+//    Example:
+//      .button {
+//        @include attention {
+//          color: red;
+//          outline: 0;
+//        }
+//        @include keyboard-focus {
+//          outline: 1px solid black;
+//        }
+//      }
+@mixin keyboard-focus() {
+  &:focus-visible {
+    @content;
+  }
+}
+
+//  ACCESSIBLE FOCUS
+//    Keyboard focus styles that should work on any element.
+//    Needs to be included in a focus state, eg: &:focus { @include a11y-focus; }
+@mixin a11y-focus {
+  outline: 2px solid yellow;
+}
+
+// TOUCH SCREEN ONLY STYLES
+//   Applies styles to devices that do not support hover states or pointers
+//   (ie. devices where a user doesn't have a mouse)
+@mixin touch() {
+  @media (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
+
+//  SCREEN READER TEXT
+//    Renders a piece of text invisible to sighted user without impacting
+//    screen readers' ability to speak the text.
+@mixin sr($important:false) {
+  $important-value: if($important, "!important", null);
+
+  position: absolute #{$important-value};
+  width: 1px #{$important-value};
+  height: 1px #{$important-value};
+  padding: 0 #{$important-value};
+  margin: -1px #{$important-value};
+  overflow: hidden #{$important-value};
+  clip: rect(0, 0, 0, 0) #{$important-value};
+  border: 0 #{$important-value};
+  color: transparent #{$important-value};
+  background: transparent #{$important-value};
+}
+
+
+//  CLEARFIX
+//    Most often used on :after pseudo-elements to make sure floated elements
+//    don't overlap with items below.
+//    Example:
+//      img {
+//        float: left;
+//        &:after {
+//          @include clearfix;
+//        }
+//      }
+@mixin clearfix {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+
+//  UNSTYLED LIST
+//    Removes list styling.
+@mixin unstyled-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}

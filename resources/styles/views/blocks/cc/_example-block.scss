@@ -1,0 +1,21 @@
+@use '~sass-rem' as rem;
+@use '../../../lib' as *;
+@use '../../../variables' as *;
+
+/**
+  GUTENBERG CONFIG
+*/
+.wp-block-acf-example-block {
+  // Specific styles if this block is a top level block (ie. not nested within another block)
+  .wp-block-post-content > & {
+
+  }
+}
+
+
+/**
+  STYLES
+*/
+.cc-example-block__container {
+  @include block-vertical-padding;
+}

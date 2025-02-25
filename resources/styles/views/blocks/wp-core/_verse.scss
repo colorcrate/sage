@@ -1,0 +1,12 @@
+@use '../../../lib' as *;
+@use '../../../variables' as *;
+
+//  VERSE
+//    Inherits styles from styles/_blocks/_wp-core/_preformatted.scss
+
+@include context('b') {
+
+  > pre.wp-block-verse {
+    @include font-family-helvetica;
+  }
+}

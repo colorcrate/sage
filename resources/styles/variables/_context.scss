@@ -1,0 +1,170 @@
+/**
+  Contextual Styles
+
+  This mixin is used to apply styles to elements based on their context. It accepts
+  a list of context arguments as strings, and applies the styles appropriately.
+
+
+  Options:
+    'block' or 'b' - Applies to any element within the front-end .block-content AND any element within the Gutenberg editor.
+        Result: .block-content, .block-editor-block-list__layout.is-root-container { @content }
+    'block-child' or 'bc' - Similar to 'block' but targets elements with ancestors .block-content or .block-editor-block-list__layout
+        Result: .block-content &, .block-editor-block-list__layout & { @content }
+    'front' or 'f' - Applies to any element on the front-end of the site
+        Result: body.front-end { @content }
+    'front-child' or 'fc' - Similar to 'front-end' targets elements with the ancestor body.front-end
+        Result: body.front-end & { @content }
+    'gutenberg' or 'g' - Applies to any element within the Gutenberg editor
+        Result: .block-editor-block-list__layout { @content }
+    'gutenberg-child' or 'gc' - Similar to 'gutenberg' but targets elements with the ancestor .block-editor-block-list__layout
+        Result: .block-editor-block-list__layout & { @content }
+    'tinymce' or 't' - Applies to any element within the TinyMCE editor
+        Result: .mce-content-body { @content }
+    'tinymce-child' or 'tc' - Similar to 'tinymce' but targets elements with the ancestor .mce-content-body
+        Result: .mce-content-body & { @content }
+    'unrecognized-string' - Any unrecognized strings are applied as a class on the element itself
+        Result: &.unrecognized-string { @content }
+
+  Example:
+    We have an H1 element. We want to apply styles to it on the front-end, in the Gutenberg editor, and in TinyMCE.
+      @include context('front', 'block', 'tinymce') {
+        h1 {
+         color: red;
+        }
+      }
+      // Outputs:
+      //  body.front-end h1,
+      //  .block-content h1,
+      //  .block-editor-block-list__layout h1,
+      //  .mce-content-body h1 {
+      //    color: red;
+      //  }
+
+
+    We have an H1 element. We want to apply different styles on the front-end and Gutenberg.
+      h1 {
+        @include context('front-child') { color: red; }
+        @include context('gutenberg-child') { color: blue; }
+      }
+      // Outputs:
+      //  body.front-end h1 { color: red; }
+      //  .block-editor-block-list__layout h1 { color: blue; }
+
+    We have an H1 element. We want to target the front-end and a specific string 'my-class'.
+      h1 {
+        @include context('front', 'my-class') { color: red; }
+      }
+      // Outputs:
+      //  body.front-end h1 { color: red; }
+      //  h1.my-class { color: red; }
+*/
+
+@mixin context($contexts...) {
+  @each $context in $contexts {
+    @if $context == 'block' or $context == 'b' {
+      .block-content,
+      .block-editor-block-list__layout.is-root-container {
+        @content;
+      }
+    }
+    @else if $context == 'block-child' or $context == 'bc' {
+      .block-content &,
+      .block-editor-block-list__layout.is-root-container & {
+        @content;
+      }
+    }
+    @else if $context == 'front' or $context == 'f' {
+      body.front-end {
+        @content;
+      }
+    }
+    @else if $context == 'front-child' or $context == 'fc' {
+      body.front-end & {
+        @content;
+      }
+    }
+    @else if $context == 'gutenberg' or $context == 'g' {
+      .block-editor-block-list__layout {
+        @content;
+      }
+    }
+    @else if $context == 'gutenberg-child' or $context == 'gc' {
+      .block-editor-block-list__layout & {
+        @content;
+      }
+    }
+    @else if $context == 'tinymce' or $context == 't' {
+      .mce-content-body {
+        @content;
+      }
+    }
+    @else if $context == 'tinymce-child' or $context == 'tc' {
+      .mce-content-body & {
+        @content;
+      }
+    }
+    @else {
+      &.#{$context} {
+        @content;
+      }
+    }
+  }
+}
+
+//  GUTENBERG IGNORES
+//    We inject all of our CSS (including resets and styles for high-level elements) into
+//    the Gutenberg editor, including our CSS reset, so that the backend editing experience
+//    appears identical to the front-end of the site. However WordPress likes to put pieces
+//    of their GUI into the editor, and some third party libraries (eg. Flickity) have helper
+//    classes that get overwritten by the rest which makes things look funky.
+//
+//    Thus, we use have a list of selectors that we can selectively ignore when need be.
+//
+//    Example: make all H1s red, but not if their selector is in this list:
+//
+//      h1:not(#{$gutenberg}) { color: red; }
+//      OR
+//      h2 { @include not-gutenberg-gui { color: red; } }
+//
+//    Please attempt to keep this list in alphabetical order for the sake of readability!
+//
+$gutenberg: (
+  '[class*="flickity"]',
+  '.acf-actions',
+  '.acf-block-fields',
+  '.acf-button',
+  '.acf-field',
+  '.acf-input',
+  '.acf-input *',
+  '.acf-input-wrap *',
+  '.acf-label',
+  '.acf-label label',
+  '.acf-repeater',
+  '.acf-row',
+  '.acf-row-handle',
+  '.acf-row-number',
+  '.acf-table',
+  '.block-editor-block-icon',
+  '.block-editor-block-variation-picker__skip',
+  '.block-editor-block-variation-picker__variations',
+  '.block-editor-default-block-appender',
+  '.block-editor-default-block-appender__content',
+  '.block-list-appender',
+  '.clear',
+  '.components-button',
+  '.components-dropdown',
+  '.components-drop-zone',
+  '.components-form-file-upload',
+  '.components-placeholder',
+  '.components-placeholder__fieldset',
+  '.components-placeholder__instructions',
+  '.components-placeholder__label',
+  '.components-placeholder__label svg',
+  '.ui-sortable',
+  '.wp-block-media-text',
+);
+@mixin not-gutenberg-gui {
+  &:not(#{$gutenberg}) {
+    @content;
+  }
+}

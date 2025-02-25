@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+@use 'lib' as *;
+@use 'variables' as *;
+
+//  BASE
+//    Load order matters! Basic universal styles applied across the
+//    entire site (ie. default or high level HTML elements)
+@use 'base/font-face';
+@use 'base/reset-editors'; // 1. Resets all browser-defined CSS so you can roll your own
+@use 'base/typography'; // 2. Defines default typography across the site
+// Load order doesn't matter below this point
+@use 'base/buttons'; // Button styles
+@use 'base/flickity'; // Styles for Flickty carousels
+@use 'base/forms'; // Styles that apply to all forms
+@use 'base/images'; // Styles that apply to all images
+
+//  BLOCKS
+//    Styles for the WordPress Blocks editor blocks
+@use 'views/blocks/blocks'; // All blocks are loaded within the _blocks.scss partial (there are a lot)
+
+// Apply base padding to post title
+h1.wp-block-post-title {
+  padding-left: 20px;
+  padding-right: 20px;
+  @include mq(min, m) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}

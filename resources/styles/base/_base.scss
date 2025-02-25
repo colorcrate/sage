@@ -1,0 +1,31 @@
+@use '../lib' as *;
+@use '../variables' as *;
+
+html,
+body {
+
+}
+
+html {
+  height: 100%;
+  min-height: 100vh;
+  font-size: 100%; // We set font size to 100% here so we can use font-size: rem(16px); later
+  // overflow-x: hidden; // Removed so elements can be sticky
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  position: relative;
+  overflow-x: hidden;
+
+  // Pad the body to allow for the admin-bar
+  &.admin-bar {
+    padding-top: 32px;
+    @include media-query(max, 782px) {
+      padding-top: 46px;
+    }
+  }
+}

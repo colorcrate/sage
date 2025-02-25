@@ -1,0 +1,12 @@
+@use '../../../lib' as *;
+@use '../../../variables' as *;
+
+//  CODE
+//    Inherits styles from styles/_blocks/_wp-core/_preformatted.scss
+
+@include context('b') {
+  > pre.wp-block-code {
+    padding: 20px;
+    background-color: color(gray-light);
+  }
+}

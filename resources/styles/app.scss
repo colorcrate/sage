@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+//  BASE
+//    Load order matters! Basic universal styles applied across the
+//    entire site (ie. default or high level HTML elements)
+@use 'base/font-face'; // 2. @font-face declarations
+@use 'base/base'; // 3. Styles for extremely high level elements (eg. html, body)
+@use 'base/typography'; // 4. Defines default typography across the site
+// Load order doesn't matter below this point
+@use 'base/buttons'; // Button styles
+@use 'base/flickity'; // Styles for Flickty carousels
+@use 'base/forms'; // Styles that apply to all forms
+@use 'base/images'; // Styles that apply to all images
+
+
+//  VIEWS
+//    CSS that applies to specific views or partials (organization follows Sage views directory organization).
+//    Partials come before full views.
+@use 'views/error-404';
+
+@use 'views/blocks/blocks'; // All blocks are loaded within the blocks.scss partial (there are a lot)
+
+@use 'views/components/alert';
+
+@use 'views/partials/block-content';
+@use 'views/partials/page-header';
+@use 'views/partials/social-media-links';
+@use 'views/partials/skip-to-content';
+
+@use 'views/sections/site-footer';
+@use 'views/sections/site-header';
+
+

@@ -1,0 +1,64 @@
+@use '../lib' as *;
+@use '../variables' as *;
+
+//  See styles/_variables/_button-mixins.scss
+
+@include context('f', 'g') {
+
+  //  HELPER CLASSES
+  //    Example:
+  //      <a class="cc-button cc-button--s cc-button--primary" href="#">My Button</a>
+  .cc-button {
+    &:not(.cc-button--s),
+    &:not(.cc-button--l) {
+      &:not(.cc-button--secondary) {
+        @include button(m, primary);
+      }
+      &.cc-button--primary {
+        @include button(m, primary);
+      }
+      &.cc-button--secondary {
+        @include button(m, secondary);
+      }
+    }
+
+    &.cc-button--s {
+      &:not(.cc-button--primary),
+      &:not(.cc-button--secondary) {
+        @include button(s, primary);
+      }
+      &.cc-button--primary {
+        @include button(s, primary);
+      }
+      &.cc-button--secondary {
+        @include button(s, secondary);
+      }
+    }
+
+    &.cc-button--m {
+      &:not(.cc-button--primary),
+      &:not(.cc-button--secondary) {
+        @include button(m, primary);
+      }
+      &.cc-button--primary {
+        @include button(m, primary);
+      }
+      &.cc-button--secondary {
+        @include button(m, secondary);
+      }
+    }
+
+    &.cc-button--l {
+      &:not(.cc-button--primary),
+      &:not(.cc-button--secondary) {
+        @include button(l, primary);
+      }
+      &.cc-button--primary {
+        @include button(l, primary);
+      }
+      &.cc-button--secondary {
+        @include button(l, secondary);
+      }
+    }
+  }
+}

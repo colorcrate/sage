@@ -1,0 +1,182 @@
+@use '~sass-rem' as rem;
+@use '../lib' as *;
+@use 'colors' as *;
+@use 'fonts' as *;
+@use 'helper-mixins' as *;
+@use 'media-query' as *;
+
+/**
+ *  RICH TEXT MIXINS
+ *
+ *  These mixins are used in various places in both app.scss and editor.scss so that
+ *  an editor's experience is seamless when moving between the front and backend of
+ *  the website.
+ *
+ */
+
+
+// HEADINGS
+@mixin heading-defaults {
+  @include font-family-helvetica;
+  line-height: 1.2;
+
+  b, strong {
+    font-weight: $bold-weight;
+  }
+  i, em {
+    font-style: italic;
+  }
+}
+
+@mixin h1 {
+  @include heading-defaults;
+  font-size: rem.convert(56px);
+
+  @include media-query(min, m) {
+    font-size: rem.convert(64px);
+  }
+}
+
+@mixin h2 {
+  @include heading-defaults;
+  font-size: rem.convert(42px);
+
+  @include media-query(min, m) {
+    font-size: rem.convert(52px);
+  }
+}
+
+@mixin h3 {
+  @include heading-defaults;
+  font-size: rem.convert(32px);
+
+  @include media-query(min, m) {
+    font-size: rem.convert(42px);
+  }
+}
+
+@mixin h4 {
+  @include heading-defaults;
+  font-size: rem.convert(24px);
+
+  @include media-query(min, m) {
+    font-size: rem.convert(32px);
+  }
+}
+
+@mixin h5 {
+  @include heading-defaults;
+  font-size: rem.convert(20px);
+
+  @include media-query(min, m) {
+    font-size: rem.convert(24px);
+  }
+}
+
+@mixin h6 {
+  @include heading-defaults;
+  font-size: rem.convert(16px);
+
+  @include media-query(min, m) {
+    font-size: rem.convert(20px);
+  }
+}
+
+// PARAGRAPHS
+@mixin p {
+  @include font-family-helvetica;
+  font-size: rem.convert(16px);
+  line-height: 1.2;
+}
+
+// LISTS
+@mixin list-defaults {
+  @include font-family-helvetica;
+  font-size: rem.convert(16px);
+  line-height: 1.2;
+
+  // Nested padding
+  ol,
+  ul {
+    ol,
+    ul {
+      padding-left: 40px;
+    }
+  }
+
+  // Nested styles
+  ol,
+  ul {
+    ul {
+      list-style-type: circle;
+    }
+    ol {
+      list-style-type: upper-alpha;
+    }
+  }
+}
+
+@mixin ol {
+  @include list-defaults;
+  padding-left: rem.convert(20px);
+  list-style-type: decimal;
+}
+
+@mixin ul {
+  @include list-defaults;
+  padding-left: rem.convert(20px);
+  list-style-type: disc;
+}
+
+
+//  BLOCKQUOTES
+@mixin blockquote {
+  border-left: 5px solid color(gray-light);
+  padding-left: 30px;
+
+  p {
+
+  }
+
+  cite {
+    margin-top: rem.convert(10px);
+    color: color(gray-accessible);
+    font-style: italic;
+  }
+}
+
+
+//  LINKS
+@mixin a {
+  color: color(blue);
+  text-decoration: none;
+  transition: color 250ms ease;
+
+  @include attention {
+    color: darken(color(blue), 20%);
+  }
+}
+
+
+//  PRE
+@mixin pre {
+  display: block;
+  @include font-family-monospace;
+  white-space: pre;
+}
+
+// VIDEO CONTAINERS
+@mixin video-container {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  position: relative;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

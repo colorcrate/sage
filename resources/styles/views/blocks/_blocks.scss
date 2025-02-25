@@ -1,0 +1,21 @@
+//  CORE WP BLOCKS
+@forward 'wp-core/code';
+@forward 'wp-core/embed';
+@forward 'wp-core/file';
+@forward 'wp-core/gallery';
+@forward 'wp-core/heading';
+@forward 'wp-core/image';
+@forward 'wp-core/list';
+@forward 'wp-core/media-and-text';
+@forward 'wp-core/paragraph';
+@forward 'wp-core/preformatted';
+@forward 'wp-core/quote';
+@forward 'wp-core/table';
+@forward 'wp-core/verse';
+
+
+//  CUSTOM FRIENDLY BLOCKS
+@forward 'cc/example-block';
+
+// UNIVERSAL STYLES
+@forward 'universal';

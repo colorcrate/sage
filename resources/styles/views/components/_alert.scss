@@ -1,0 +1,18 @@
+@use '../../lib' as *;
+@use '../../variables' as *;
+
+.alert {
+
+  &--default {
+
+  }
+  &--success {
+
+  }
+  &--caution {
+
+  }
+  &--warning {
+
+  }
+}

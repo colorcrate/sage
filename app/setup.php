@@ -9,6 +9,11 @@ namespace App;
 use function Roots\bundle;
 
 /**
+ * Require PHP helper scripts for use across the project
+ */
+require 'helpers.php';
+
+/**
  * Register the theme assets.
  *
  * @return void
@@ -97,6 +102,16 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#customize-selective-refresh-widgets
      */
     add_theme_support('customize-selective-refresh-widgets');
+
+    /**
+     * Register TinyMCE styles
+     *
+     * @return void
+     */
+    $tinymce_css = \App\access_protected_object_value( \Roots\bundle('tinymce')->css(), 'items' );
+    if ( $tinymce_css ) {
+      add_editor_style('public/' . $tinymce_css[0] );
+    }
 }, 20);
 
 /**

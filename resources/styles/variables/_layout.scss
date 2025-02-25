@@ -1,0 +1,180 @@
+@use 'media-query' as *;
+
+//  GENERIC CONTAINER ELEMENT
+//    To keep the container widths across the site consistent. Feel free to adjust these
+//    values to suit your project.
+@mixin container {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: {
+    left: 20px;
+    right: 20px;
+  }
+
+  @include media-query(min, s) {
+    padding: {
+      left: 30px;
+      right: 30px;
+    }
+  }
+
+  @include media-query(min, m) {
+    padding: {
+      left: 40px;
+      right: 40px;
+    }
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Custom properties and utility class for managing vertical flow.
+ * https://piccalil.li/blog/my-favourite-3-lines-of-css/
+ */
+
+ :root {
+  --flow-space-xs: .5rem;
+  --flow-space-s: 1rem;
+  --flow-space: 1.5rem;
+  --flow-space-l: 3rem;
+  --flow-space-xl: 6rem;
+}
+
+.flow-xs > * + * {
+  margin-block-start: var(--flow-space-xs, .5rem);
+}
+
+.flow-s > * + * {
+  margin-block-start: var(--flow-space-s, 1rem);
+}
+
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1.5rem);
+}
+
+.flow-l > * + * {
+  margin-block-start: var(--flow-space-l, 3rem);
+}
+
+//  BLOCK VERTICAL PADDING
+@mixin block-vertical-padding($top: 30, $bottom: 30) {
+  // TOP
+  // None
+  .cc-block--top-padding--none & {
+    --top-padding: #{$top * 0}px;
+    @include media-query(min, s) {
+      --top-padding: #{$top * 0}px;
+    }
+    @include media-query(min, m) {
+      --top-padding: #{$top * 0}px;
+    }
+    @include media-query(min, l) {
+      --top-padding: #{$top * 0}px;
+    }
+  }
+  // Default / Small
+  .cc-block--top-padding--default &,
+  .cc-block--top-padding--small & {
+    --top-padding: #{$top}px;
+    @include media-query(min, s) {
+      --top-padding: #{$top + 10}px;
+    }
+    @include media-query(min, m) {
+      --top-padding: #{$top + 20}px;
+    }
+    @include media-query(min, l) {
+      --top-padding: #{$top + 30}px;
+    }
+  }
+  // Medium
+  .cc-block--top-padding--medium & {
+    --top-padding: #{$top + 20}px;
+    @include media-query(min, s) {
+      --top-padding: #{$top + 30}px;
+    }
+    @include media-query(min, m) {
+      --top-padding: #{$top + 40}px;
+    }
+    @include media-query(min, l) {
+      --top-padding: #{$top + 50}px;
+    }
+  }
+  // Large
+  .cc-block--top-padding--large & {
+    --top-padding: #{$top + 40}px;
+    @include media-query(min, s) {
+      --top-padding: #{$top + 50}px;
+    }
+    @include media-query(min, m) {
+      --top-padding: #{$top + 60}px;
+    }
+    @include media-query(min, l) {
+      --top-padding: #{$top + 70}px;
+    }
+  }
+
+  // BOTTOM
+  // None
+  .cc-block--bottom-padding--none & {
+    --bottom-padding: #{$bottom * 0}px;
+    @include media-query(min, s) {
+      --bottom-padding: #{$bottom * 0}px;
+    }
+    @include media-query(min, m) {
+      --bottom-padding: #{$bottom * 0}px;
+    }
+    @include media-query(min, l) {
+      --bottom-padding: #{$bottom * 0}px;
+    }
+  }
+  // Default / Small
+  .cc-block--bottom-padding--default &,
+  .cc-block--bottom-padding--small & {
+    --bottom-padding: #{$bottom}px;
+    @include media-query(min, s) {
+      --bottom-padding: #{$bottom + 10}px;
+    }
+    @include media-query(min, m) {
+      --bottom-padding: #{$bottom + 20}px;
+    }
+    @include media-query(min, l) {
+      --bottom-padding: #{$bottom + 30}px;
+    }
+  }
+  // Medium
+  .cc-block--bottom-padding--medium & {
+    --bottom-padding: #{$bottom + 20}px;
+    @include media-query(min, s) {
+      --bottom-padding: #{$bottom + 30}px;
+    }
+    @include media-query(min, m) {
+      --bottom-padding: #{$bottom + 40}px;
+    }
+    @include media-query(min, l) {
+      --bottom-padding: #{$bottom + 50}px;
+    }
+  }
+  // Large
+  .cc-block--bottom-padding--large & {
+    --bottom-padding: #{$bottom + 40}px;
+    @include media-query(min, s) {
+      --bottom-padding: #{$bottom + 50}px;
+    }
+    @include media-query(min, m) {
+      --bottom-padding: #{$bottom + 60}px;
+    }
+    @include media-query(min, l) {
+      --bottom-padding: #{$bottom + 70}px;
+    }
+  }
+
+  // Apply the padding
+  padding-top: var(--top-padding);
+  padding-bottom: var(--bottom-padding);
+}

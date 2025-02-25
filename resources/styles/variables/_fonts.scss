@@ -1,0 +1,64 @@
+//  FONTS
+//    This base set of fonts should serve as a template for your project.
+//    Feel free to change them as necessary! Font Awesome is included by default.
+
+$fontawesome: 'Font Awesome 6 Pro';
+$fontawesomebrands: 'Font Awesome 6 Brands';
+$helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$monospace: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+$thin-weight:    100;
+$regular-weight: 400;
+$bold-weight:    700;
+
+// Example:
+//    div { @include font-family-helvetica(thin); }
+@mixin font-family-helvetica($weight:default) {
+  font-family: $helvetica;
+
+  @if $weight == thin {
+    font-weight: $thin-weight;
+  }
+  @else if $weight == regular or $weight == default {
+    font-weight: $regular-weight;
+  }
+  @else if $weight == bold {
+    font-weight: $boldWeight;
+  }
+}
+
+@mixin font-family-monospace {
+  font-family: $monospace;
+  font-weight: normal;
+}
+
+@mixin font-family-fontawesome {
+  font-family: $fontawesome;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+@mixin font-family-fontawesome-brands {
+  font-family: $fontawesomebrands;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+
+
+@mixin font-smoothing {
+  -webkit-font-smoothing:antialiased;
+  -moz-font-smoothing:antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -o-font-smoothing:antialiased;
+  font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}

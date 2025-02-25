@@ -20,8 +20,12 @@
   },
   "devDependencies": {
     "@roots/bud": "6.23.3",
+    "@roots/bud-sass": "^6.24.0",
     "@roots/bud-tailwindcss": "6.23.3",
     "@roots/sage": "6.23.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "flickity": "^3.0.0",
+    "sass-rem": "^3.0.0"
+  }
 }

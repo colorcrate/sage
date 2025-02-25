@@ -1,0 +1,72 @@
+@use '~sass-rem' as rem;
+@use '../lib' as *;
+@use 'colors' as *;
+@use 'fonts' as *;
+@use 'helper-mixins' as *;
+@use 'media-query' as *;
+
+//  BUTTONS
+//    Examples:
+//      a { @include button; } // Defaults to medium size, primary style
+//      a { @include button(s, secondary); }
+@mixin button($size:default, $style:default) {
+  $size: unquote($size);
+  $style: unquote($style);
+
+  display: inline-block;
+  border-radius: rem.convert(3px);
+  cursor: pointer;
+  @include font-family-helvetica;
+  line-height: 1;
+  text-decoration: none;
+
+  // Sizes
+  @if $size == s {
+    padding: rem.convert(5px);
+    font-size: rem.convert(16px);
+
+    @include media-query(min, m) {
+      padding: rem.convert(7px);
+    }
+  }
+  @else if $size == m or $size == default {
+    padding: rem.convert(10px);
+    font-size: rem.convert(18px);
+
+    @include media-query(min, m) {
+      padding: rem.convert(15px);
+    }
+  }
+  @else if $size == l {
+    padding: rem.convert(15px);
+    font-size: rem.convert(20px);
+
+    @include media-query(min, m) {
+      padding: rem.convert(20px);
+    }
+  }
+
+  // Styles
+  @if $style == primary or $style == default {
+    background-color: color(black);
+    border: 1px solid color(black);
+    color: color(white);
+    transition: background-color 250ms ease, color 250ms ease;
+
+    @include attention {
+      background-color: lighten(color(black), 20%);
+      color: color(white);
+    }
+  }
+  @else if $style == secondary {
+    background-color: color(white);
+    border: 1px solid color(black);
+    color: color(black);
+    transition: background-color 250ms ease;
+
+    @include attention {
+      background-color: darken(color(white), 20%);
+      color: color(black);
+    }
+  }
+}

@@ -1,0 +1,107 @@
+// Directions map for gradients
+$map-for-directions: (
+  "top": to top,
+  "top-right": to top right,
+  "right": to right,
+  "bottom-right": to bottom right,
+  "bottom": to bottom,
+  "bottom-left": to bottom left,
+  "left": to left,
+  "top-left": to top left,
+) !default;
+
+//  LINEAR GRADIENTS
+//    Props to Gerillass:
+//      https://github.com/selfishprimate/gerillass/blob/master/scss/library/_linear-gradient.scss
+//    @param $direction - stiring, number - Sets the gradient line’s direction of angle. Accepts top, top-right, right, bottom-right, bottom, bottom-left, left, top-left values as a string. Or you can pass a custom value as a number followed by a deg unit.
+//    @param $colors - Accepts a list of colors with or without the color-stop points. You can pass as many color values as you want.
+//    Example:
+//      Simple gradient:
+//        @include linear-gradient(right, black white);
+//      Gradient with stops
+//        @include linear-gradient(
+//          $direction: right,
+//          $colors: (#1a2a6c 0 10%) (#b21f1f 30% 60%) (#fdbb2d 90% 100%)
+//        );
+@mixin linear-gradient($direction, $colors) {
+  $list: ();
+  @for $i from 1 through length($colors) {
+    $list: append($list, nth($colors, $i), comma);
+  }
+  @if map-has-key($map-for-directions, $direction) {
+    background: linear-gradient(
+      map-get($map-for-directions, $direction),
+      $list
+    );
+  } @else if not map-has-key($map-for-directions, $direction) {
+    @if not index("deg", unit($direction)) {
+      @error "#{$direction} is a wrong value for the $direction parameter. The value must be eighter a number followed by the 'deg' unit or one of the followings: #{map-keys($map-for-directions)}.";
+    } @else {
+      background: linear-gradient($direction, $list);
+    }
+  }
+}
+
+
+//  RADIAL GRADIENTS
+//    Props to Gerillass: https://github.com/selfishprimate/gerillass/blob/master/scss/library/_radial-gradient.scss
+//    @param $shape - string - This option sets the shape of the gradient. Accepts circle or ellipse values. The default value is set to ellipse. To skip this argument use null.
+//    @param $position - string, number - Sets the position of the gradient’s shape. Accepts the following values: top, top-right, right, bottom-right, bottom, bottom-left, left, top-left, center, closest-side, farthest-side, closest-corner, farthest-corner.
+//    @param $colors - list - Accepts a list of colors with or without the color-stop points. You can pass as many color values as you want.
+//    Example:
+//      @include radial-gradient(circle, center, red orange);
+@mixin radial-gradient($shape, $position, $colors) {
+  $list: ();
+  $shape: unquote($shape);
+  $position: unquote($position);
+  @for $i from 1 through length($colors) {
+    $list: append($list, nth($colors, $i), comma);
+  }
+  @if map-has-key($map-for-positions, $position) {
+    background: radial-gradient(
+      $shape map-get($map-for-positions, $position),
+      $list
+    );
+  } @else if not map-has-key($map-for-positions, $position) {
+    background: radial-gradient($shape $position, $list);
+  }
+}
+
+
+//  SCRIM GRADIENTS
+//    Scrim gradients have less of a harsh transition form one color to another (they "ease" into
+//    each color), so they are useful if you have a gradient fading to transparency over an image,
+//    for example. Based on:
+//      https://codepen.io/jmkII/pen/pParwj
+//      https://css-tricks.com/easing-linear-gradients/
+//    Example:
+//      div { background-image: scrim-linear-gradient(right, black, transparent); }
+$scrimStops:  0% 0%,
+              26.2% 19%,
+              45.9% 34%,
+              61.8% 47%,
+              72.2% 56.5%,
+              80.6% 65%,
+              87.4% 73%,
+              92.5% 80.2%,
+              95.8% 86.1%,
+              97.9% 91%,
+              99.2% 95.2%,
+              99.8% 98.2%,
+              100% 100%;
+@function getColorStop($colorTo, $colorFrom, $weight, $stop) {
+  @return mix($colorFrom, $colorTo, $weight) $stop;
+}
+@function getColorStops($colorTo, $colorFrom) {
+  $stops: ();
+  @each $scrimStop in $scrimStops {
+    $stops: append($stops, getColorStop($colorTo, $colorFrom, nth($scrimStop, 1), nth($scrimStop, 2)), comma)
+  }
+  @return $stops;
+}
+@function scrim-linear-gradient($args...) {
+  @if (length($args) == 3) {
+    @return linear-gradient(to nth($args, 1), #{getColorStops(nth($args, 2), nth($args, 3))});
+  }
+  @return linear-gradient(to nth($args, 1), #{nth($args, 2)}, #{getColorStops(nth($args, 3), nth($args, 4))});
+}

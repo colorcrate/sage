@@ -1,0 +1,11 @@
+@use '../../lib' as *;
+@use '../../variables' as *;
+
+.acf-block-component {
+  // Reset default WP alignment so we can provide our own on a per-block basis
+  &.alignleft,
+  &.alignright {
+    margin: 0 !important;
+    float: none !important;
+  }
+}

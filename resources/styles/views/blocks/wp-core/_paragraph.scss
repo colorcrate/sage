@@ -1,0 +1,23 @@
+@use '~sass-rem' as rem;
+@use '../../../lib' as *;
+@use '../../../variables' as *;
+
+//  PARAGRAPHS
+//    Inherits styles from _base/typography.scss
+
+@include context('b') {
+  // Top-level block styles
+  > p {
+    @include context('b') {
+      max-width: 700px;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: 0 auto rem.convert(20px) auto;
+
+      @include mq(min, 740px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}

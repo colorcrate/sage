@@ -1,0 +1,17 @@
+@use '~sass-rem' as rem;
+@use '../../../lib' as *;
+@use '../../../variables' as *;
+
+//  GALLERY
+//    Inherits styles mostly from the WP core block CSS
+
+@include context('b') {
+
+  > figure.wp-block-gallery {
+    margin-bottom: rem.convert(20px);
+
+    figcaption {
+      @include font-family-helvetica;
+    }
+  }
+}

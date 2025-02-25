@@ -1,0 +1,114 @@
+@use '../lib' as *;
+@use '../variables' as *;
+
+/**
+  TYPOGRAPHY
+
+  Use this file for site-wide typgraphy styles used in content regions.
+  This file is automatically injected into the Gutenberg editor and TinyMCE
+  along with the front-end.
+*/
+
+//  FONT SMOOTHING, KERNING & LIGATURES
+//    Ensures fonts are displayed consistently across all browsers/devices
+//    (or as close as we can get)
+*, *:after, *:before {
+  @include context('fc', 'gc', 'tc') {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern", "liga", "dlig";
+    -moz-font-feature-settings: "kern", "liga", "dlig";
+    -moz-font-feature-settings: "kern=1", "liga=1", "dlig=1";
+    font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+  }
+}
+
+//  BASE TYPOGRAPHY
+//    Sets up the basic typography for content regions on the site. This excludes
+//    typography that exists outside of content regions (ie. site heaader, site
+//    footer, etc.)
+
+// HEADINGS
+h1 {
+  @include context('bc', 'tc') {
+    @include h1;
+  }
+}
+
+h2 {
+  @include context('bc', 'tc') {
+    @include h2;
+  }
+}
+
+h3 {
+  @include context('bc', 'tc') {
+    @include h3;
+  }
+}
+
+h4 {
+  @include context('bc', 'tc') {
+    @include h4;
+  }
+}
+
+h5 {
+  @include context('bc', 'tc') {
+    @include h5;
+  }
+}
+
+h6 {
+  @include context('bc', 'tc') {
+    @include h6;
+  }
+}
+
+// PARAGRAPHS
+p {
+  @include context('bc', 'tc') {
+    @include p;
+  }
+}
+
+// LISTS
+ul {
+  @include context('bc', 'tc') {
+    @include ul;
+  }
+}
+
+ol {
+  @include context('bc', 'tc') {
+    @include ol;
+  }
+}
+
+// BLOCKQUOTES
+blockquote {
+  @include context('bc', 'tc') {
+    @include blockquote;
+  }
+}
+
+// LINKS
+a {
+  @include context('bc', 'tc') {
+    @include a;
+  }
+}
+
+// PRE
+pre {
+  @include context('fc', 'gc', 'tc') {
+    @include pre;
+  }
+}
+
