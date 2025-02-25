@@ -3,19 +3,19 @@
 //      span { color: map-get($colors, white); }
 $colors: (
   // DEFAULT COLORS: do not change these please!
-	white: #fff,
-	black: #000,
-	gray-accessible: #757575, // Lightest possible accessible gray on white
-  gray-light: #F7F7F7,
-  // BRAND COLORS: change these per-project
-  blue: #317CA5,
+	'white': #fff,
+	'black': #000,
+	'gray-accessible': #757575, // Lightest possible accessible gray on white
+  'gray-light': #F7F7F7,
+  '// BRAND COLORS': change these per-project
+  'blue': #317CA5
 );
 
 //  COLORS FUNCTION
 //    Provides a handy shorthand method for getting colors so
 //    you don't have to map-get($colors, black)!
 //    Example:
-//      background-color: color(black);
+//      background-color: color('black');
 @function color($key) {
   @if not global-variable-exists(colors) {
     @error '🔴  $colors map does not exist';
@@ -25,11 +25,10 @@ $colors: (
     @error '🔴  $colors map does not contain any items';
   }
 
-  $val: map-get($colors, black);
+  // Normalize the key to a string
+  $key: "#{$key}";
 
-  @if length($key) == 1 {
-    $val: map-get($colors, $key);
-  }
+  $val: map-get($colors, $key);
 
   // Validate
   @if type-of($val) != 'color' {

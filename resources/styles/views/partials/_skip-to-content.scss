@@ -7,14 +7,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: color(black);
-  color: color(white);
+  background-color: color('black');
+  color: color('white');
   text-align: center;
   transform: translate(0, -100%);
   transition: transform 250ms ease;
 
   @include keyboard-focus {
     transform: translate(0, 0);
-    color: color(white);
+    color: color('white');
   }
 }

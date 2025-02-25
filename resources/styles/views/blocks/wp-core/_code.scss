@@ -7,6 +7,6 @@
 @include context('b') {
   > pre.wp-block-code {
     padding: 20px;
-    background-color: color(gray-light);
+    background-color: color('gray-light');
   }
 }

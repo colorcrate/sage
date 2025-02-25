@@ -132,7 +132,7 @@
 
 //  BLOCKQUOTES
 @mixin blockquote {
-  border-left: 5px solid color(gray-light);
+  border-left: 5px solid color('gray-light');
   padding-left: 30px;
 
   p {
@@ -141,7 +141,7 @@
 
   cite {
     margin-top: rem.convert(10px);
-    color: color(gray-accessible);
+    color: color('gray-accessible');
     font-style: italic;
   }
 }
@@ -149,12 +149,12 @@
 
 //  LINKS
 @mixin a {
-  color: color(blue);
+  color: color('blue');
   text-decoration: none;
   transition: color 250ms ease;
 
   @include attention {
-    color: color.scale(color(blue), $lightness: -20%);
+    color: color.scale(color('blue'), $lightness: -20%);
   }
 }
 
