@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php // ian@colorcrate.com account, kit name: "Solid + Regular + Brands (NPM)" ?>
+    <script src="https://kit.fontawesome.com/afaa138064.js" crossorigin="anonymous"></script>
+
     @php(do_action('get_header'))
     @php(wp_head())
   </head>

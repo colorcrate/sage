@@ -15,29 +15,18 @@
   font-size: 0;
 
   &:before {
+    content: '';
     display: inline-block;
     font-size: rem.convert(24px);
+    @include font-family-fontawesome-brands;
   }
 
-  // Default icons from Font Awesome, feel free to change these if need be
+  // Icons from Font Awesome
   &[data-service='email'] {
     &:before {
       content: '\f0e0';
       @include font-family-fontawesome;
     }
-  }
-  &[data-service='facebook'],
-  &[data-service='github'],
-  &[data-service='google_plus'],
-  &[data-service='instagram'],
-  &[data-service='linkedin'],
-  &[data-service='pinterest'],
-  &[data-service='reddit'],
-  &[data-service='tumblr'],
-  &[data-service='twitter'],
-  &[data-service='vimeo'],
-  &[data-service='youtube'] {
-    @include font-family-fontawesome-brands;
   }
   &[data-service='facebook'] {
     &:before {
@@ -79,14 +68,14 @@
       content: '\f173';
     }
   }
-  &[data-service='twitter'] {
-    &:before {
-      content: '\f099';
-    }
-  }
   &[data-service='vimeo'] {
     &:before {
       content: '\f40a';
+    }
+  }
+  &[data-service='x-twitter'] {
+    &:before {
+      content: '\e61b';
     }
   }
   &[data-service='youtube'] {
