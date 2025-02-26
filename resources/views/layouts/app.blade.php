@@ -11,7 +11,7 @@
     @php(wp_head())
   </head>
 
-  <body @php(body_class())>
+  <body @php(body_class('front-end'))>
     @php(wp_body_open())
 
     <div id="app">
