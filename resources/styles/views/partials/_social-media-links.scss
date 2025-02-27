@@ -28,6 +28,11 @@
       @include font-family-fontawesome;
     }
   }
+  &[data-service='bluesky'] {
+    &:before {
+      content: '\e671';
+    }
+  }
   &[data-service='facebook'] {
     &:before {
       content: '\f09a';

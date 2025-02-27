@@ -39,6 +39,7 @@
                         "id": ""
                     },
                     "choices": {
+                        "bluesky": "Bluesky",
                         "facebook": "Facebook",
                         "github": "Github",
                         "google_plus": "Google+",
@@ -101,5 +102,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740587757
+    "modified": 1740680141
 }
