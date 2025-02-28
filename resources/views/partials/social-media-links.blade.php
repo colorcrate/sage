@@ -3,7 +3,7 @@
  *  Social Media Links
  *
  *  Displays social media links in a list. Called thusly:
- *  @include('partials.social-media-links', [ 'class' => 'optional-class-name', 'socialMediaLinks' => array() ])
+ *  @include('partials.social-media-links', [ 'class' => 'optional-class-name', 'social_media_links' => array() ])
  *
  *  @param  $class - string - Optional, passed from the @include (see above)
  *  @param  $socialMediaLinks - array - From app/View/Composers/App.php

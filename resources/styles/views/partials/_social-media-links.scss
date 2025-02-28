@@ -78,6 +78,8 @@
       content: '\f40a';
     }
   }
+  &[data-service='twitter']
+  &[data-service='x'],
   &[data-service='x-twitter'] {
     &:before {
       content: '\e61b';
