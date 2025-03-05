@@ -3,6 +3,7 @@
 @forward 'breakpoints'; // Defines breakpoint pixel values
 @forward 'button-mixins'; // Mixins, for buttons
 @forward 'colors'; // 🌈
+@forward 'container-query'; // Shortcut mixins for container queries
 @forward 'context'; // Mixins and variables pertaining to the the context where styles are applied (eg. front-end, TinyMCE, or Gutenberg)
 @forward 'fonts'; // Variables and mixins for defining font family
 @forward 'gradients'; // Shortcut mixins for gradients

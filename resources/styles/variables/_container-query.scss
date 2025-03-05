@@ -1,0 +1,20 @@
+// Default container breakpoints, these reflect the same values found
+// in _breakpoints.scss.
+$xxs: 0px;
+$xs: 375px;
+$s: 768px;
+$m: 1024px;
+$l: 1232px;
+$xl: 1472px;
+$xxl: 2560px;
+
+@mixin container-query($size) {
+  @container (min-width: #{$size}){ @content; }
+}
+
+// Shorthand
+@mixin cq($size) {
+  @include container-query($size) {
+    @content;
+  }
+}
