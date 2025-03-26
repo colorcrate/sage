@@ -2,8 +2,8 @@
 @use '../../lib' as *;
 @use '../../variables' as *;
 
-.social-media-links {
-
+ul.social-media-links {
+  margin: 0;
 }
 
 .social-media-links__item {
@@ -14,9 +14,13 @@
 .social-media-links__link {
   font-size: 0;
 
+  &:focus-visible {
+    outline: 2px solid color('bronze-light');
+  }
+
   &:before {
     content: '';
-    display: inline-block;
+    display: block;
     font-size: rem.convert(24px);
     @include font-family-fontawesome-brands;
   }
@@ -68,6 +72,17 @@
       content: '\f1a1';
     }
   }
+  &[data-service='substack'] {
+    &:before {
+      content: '\f02e'; // bookmark icon since FA brands doesn't have a substack icon
+      @include font-family-fontawesome;
+    }
+  }
+  &[data-service='tiktok'] {
+    &:before {
+      content: '\e07b';
+    }
+  }
   &[data-service='tumblr'] {
     &:before {
       content: '\f173';
@@ -78,7 +93,7 @@
       content: '\f40a';
     }
   }
-  &[data-service='twitter']
+  &[data-service='twitter'],
   &[data-service='x'],
   &[data-service='x-twitter'] {
     &:before {
